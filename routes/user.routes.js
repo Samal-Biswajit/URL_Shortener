@@ -2,11 +2,19 @@ import express from "express";
 import { db } from "../db/index.js";
 import { usersTable } from "../models/user.model.js";
 import { randomBytes, createHmac } from "node:crypto";
+import {signupPostRequestBodySchema} from "../validation/request.validation.js"
+import { eq } from "drizzle-orm";
 
-const router = express.router();
+const router = express.Router();
 
 router.post("/signup", async (req, res) => {
-    const { firstname, lastname, email, password } = req.body;
+    const validationResult = await signupPostRequestBodySchema.safeParseAsync(req.body);
+
+    if(validationResult.error){
+        return res.status(400).json({error: validationResult.error.format()});
+    }
+
+    const {firstname,lastname,email,password} = validationResult.data;
 
     const [existingUser] = await db
         .select({
