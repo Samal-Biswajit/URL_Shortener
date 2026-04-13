@@ -15,7 +15,7 @@ export function authenticationMiddleware(req, res, next) {
       .status(400)
       .json({ error: "Authorization header must start with Bearer" });
 
-  const [_,token] = authHeader.split(" "); //[Bearer <TOKEN>]
+  const [_, token] = authHeader.split(" "); //[Bearer <TOKEN>]
 
   const payload = validateUserToken(token);
   req.user = payload;

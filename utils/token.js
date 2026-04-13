@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { userTokenSchema } from "../validation/token.validation.js";
+import "dotenv/config";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 

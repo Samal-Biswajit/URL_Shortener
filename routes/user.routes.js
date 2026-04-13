@@ -8,7 +8,6 @@ import {
 import { getUserByEmail, createUser } from "../services/user.service.js";
 import { createUserToken } from "../utils/token.js";
 
-
 const router = express.Router();
 
 router.post("/signup", async (req, res) => {
@@ -53,15 +52,14 @@ router.post("/login", async (req, res) => {
       .status(404)
       .json({ error: `User with email ${email} does not exist!` });
   }
-  const {hashedPassword} = hashPasswordWithSalt(password, user.salt);
+  const { hashedPassword } = hashPasswordWithSalt(password, user.salt);
 
-  if(user.password !== hashedPassword){
-    return res.status(400).json({error: "invalid password"});
+  if (user.password !== hashedPassword) {
+    return res.status(400).json({ error: "invalid password" });
   }
 
-  const token = await createUserToken({id: user.id})
+  const token = await createUserToken({ id: user.id });
 
-  return res.json({token});
-
+  return res.json({ token });
 });
 export default router;
