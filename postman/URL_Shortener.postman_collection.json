@@ -33,13 +33,8 @@
         },
         "url": {
           "raw": "{{BASE_URL}}/user/signup",
-          "host": [
-            "{{BASE_URL}}"
-          ],
-          "path": [
-            "user",
-            "signup"
-          ]
+          "host": ["{{BASE_URL}}"],
+          "path": ["user", "signup"]
         }
       },
       "response": []
@@ -63,13 +58,8 @@
         },
         "url": {
           "raw": "{{BASE_URL}}/user/login",
-          "host": [
-            "{{BASE_URL}}"
-          ],
-          "path": [
-            "user",
-            "login"
-          ]
+          "host": ["{{BASE_URL}}"],
+          "path": ["user", "login"]
         }
       },
       "response": []
@@ -100,12 +90,8 @@
         },
         "url": {
           "raw": "{{BASE_URL}}/shorten",
-          "host": [
-            "{{BASE_URL}}"
-          ],
-          "path": [
-            "shorten"
-          ]
+          "host": ["{{BASE_URL}}"],
+          "path": ["shorten"]
         }
       },
       "response": []
@@ -127,12 +113,8 @@
         "header": [],
         "url": {
           "raw": "{{BASE_URL}}/codes",
-          "host": [
-            "{{BASE_URL}}"
-          ],
-          "path": [
-            "codes"
-          ]
+          "host": ["{{BASE_URL}}"],
+          "path": ["codes"]
         }
       },
       "response": []
@@ -154,12 +136,8 @@
         "header": [],
         "url": {
           "raw": "{{BASE_URL}}/4c767d44-9c6f-4c4b-9fdb-c7c15d57a9a7",
-          "host": [
-            "{{BASE_URL}}"
-          ],
-          "path": [
-            "4c767d44-9c6f-4c4b-9fdb-c7c15d57a9a7"
-          ]
+          "host": ["{{BASE_URL}}"],
+          "path": ["4c767d44-9c6f-4c4b-9fdb-c7c15d57a9a7"]
         }
       },
       "response": []
