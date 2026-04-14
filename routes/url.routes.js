@@ -5,6 +5,7 @@ import { shortenPostRequestBody } from "../validation/request.validation.js";
 import {
   createURLTableEntry,
   getTargetURLByShortCode,
+  deleteURLByID,
 } from "../services/url.service.js";
 import { ensureAuthenticated } from "../middlewares/auth.middleware.js";
 import { getAllShortenURLs } from "../services/url.service.js";
@@ -30,11 +31,19 @@ router.post("/shorten", ensureAuthenticated, async (req, res) => {
   });
 });
 
-router.get('/codes',ensureAuthenticated,async(req,res)=>{
+router.get("/codes", ensureAuthenticated, async (req, res) => {
   const codes = await getAllShortenURLs(req.user.id);
 
-  return res.json({codes});
-})
+  return res.json({ codes });
+});
+
+router.delete("/:id", ensureAuthenticated, async (req, res) => {
+  const id = req.params.id;
+  const userId = req.user.id;
+  await deleteURLByID(id, userId);
+
+  return res.status(200).json({ deleted: true });
+});
 router.get("/:shortCode", async (req, res) => {
   const code = req.params.shortCode;
 
