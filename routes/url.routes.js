@@ -2,7 +2,10 @@ import express from "express";
 import { nanoid } from "nanoid";
 
 import { shortenPostRequestBody } from "../validation/request.validation.js";
-import { createURLTableEntry } from "../services/url.service.js";
+import {
+  createURLTableEntry,
+  getTargetURLByShortCode,
+} from "../services/url.service.js";
 import { ensureAuthenticated } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
@@ -24,6 +27,18 @@ router.post("/shorten", ensureAuthenticated, async (req, res) => {
     shortCode: result.shortCode,
     targetURL: result.targetURL,
   });
+});
+
+router.get("/:shortCode", async (req, res) => {
+  const code = req.params.shortCode;
+
+  const result = await getTargetURLByShortCode(code);
+
+  if (!result) {
+    return res.json({ error: "Invalid URL" });
+  }
+
+  return res.redirect(result.targetURL);
 });
 
 export default router;

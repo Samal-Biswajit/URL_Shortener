@@ -1,5 +1,6 @@
 import { db } from "../db/index.js";
 import { urlsTable } from "../models/url.model.js";
+import { eq } from "drizzle-orm";
 
 export async function createURLTableEntry(shortCode, url, userId) {
   const [result] = await db
@@ -14,6 +15,17 @@ export async function createURLTableEntry(shortCode, url, userId) {
       shortCode: urlsTable.shortCode,
       targetURL: urlsTable.targetURL,
     });
+
+  return result;
+}
+
+export async function getTargetURLByShortCode(code) {
+  const [result] = await db
+    .select({
+      targetURL: urlsTable.targetURL,
+    })
+    .from(urlsTable)
+    .where(eq(urlsTable.shortCode, code));
 
   return result;
 }
