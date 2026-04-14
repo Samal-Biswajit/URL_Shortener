@@ -7,6 +7,7 @@ import {
   getTargetURLByShortCode,
 } from "../services/url.service.js";
 import { ensureAuthenticated } from "../middlewares/auth.middleware.js";
+import { getAllShortenURLs } from "../services/url.service.js";
 
 const router = express.Router();
 
@@ -29,6 +30,11 @@ router.post("/shorten", ensureAuthenticated, async (req, res) => {
   });
 });
 
+router.get('/codes',ensureAuthenticated,async(req,res)=>{
+  const codes = await getAllShortenURLs(req.user.id);
+
+  return res.json({codes});
+})
 router.get("/:shortCode", async (req, res) => {
   const code = req.params.shortCode;
 

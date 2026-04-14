@@ -29,3 +29,12 @@ export async function getTargetURLByShortCode(code) {
 
   return result;
 }
+
+export async function getAllShortenURLs(userId){
+    const codes = await db
+      .select()
+      .from(urlsTable)
+      .where(eq(urlsTable.userId,userId));
+
+      return codes;
+}
