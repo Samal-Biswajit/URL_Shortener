@@ -23,7 +23,7 @@ export async function addUserToDB(req, res) {
   }
 
   const { salt, hashedPassword } = hashPasswordWithSalt(password);
-  const [user] = await createUser(
+  const user = await createUser(
     firstname,
     lastname,
     email,
