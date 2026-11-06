@@ -5,5 +5,7 @@ workspace:
 localResources:
   collections:
     - ../URL_Shortener
+    - ../collections/URL_Shortener
   environments:
     - ../URL_Shortener.environment.yaml
+    - ../environments/URL_Shortener.environment.yaml

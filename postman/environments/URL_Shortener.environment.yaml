@@ -1,0 +1,30 @@
+name: URL_Shortener
+values:
+  - key: BASE_URL
+    value: 'http://localhost:8000'
+    type: default
+    enabled: true
+  - key: USER_FIRST_NAME
+    value: 'John'
+    type: default
+    enabled: true
+  - key: USER_LAST_NAME
+    value: 'Doe'
+    type: default
+    enabled: true
+  - key: USER_EMAIL
+    value: 'john@example.com'
+    type: default
+    enabled: true
+  - key: USER_PASSWORD
+    value: 'password123'
+    type: default
+    enabled: true
+  - key: TOKEN
+    value: ''
+    type: default
+    enabled: true
+  - key: URL_ID
+    value: ''
+    type: default
+    enabled: true

@@ -1,0 +1,157 @@
+{
+  "info": {
+    "name": "URL_Shortener",
+    "description": "URL Shortener API collection for testing endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "CreateUserByEmail",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/user/signup",
+          "host": ["{{BASE_URL}}"],
+          "path": ["user", "signup"]
+        }
+      }
+    },
+    {
+      "name": "LoginUser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const response = pm.response.json();",
+              "if (response.token) {",
+              "    pm.environment.set(\"TOKEN\", response.token);",
+              "    console.log(\"Token automatically saved to TOKEN environment variable\");",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/user/login",
+          "host": ["{{BASE_URL}}"],
+          "path": ["user", "login"]
+        }
+      }
+    },
+    {
+      "name": "shortenURL",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const response = pm.response.json();",
+              "if (response.id) {",
+              "    pm.environment.set(\"URL_ID\", response.id);",
+              "    console.log(\"URL ID automatically saved to URL_ID environment variable\");",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://www.facebook.com\",\n  \"code\": \"facebook\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/shorten",
+          "host": ["{{BASE_URL}}"],
+          "path": ["shorten"]
+        }
+      }
+    },
+    {
+      "name": "getAllURLs",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/codes",
+          "host": ["{{BASE_URL}}"],
+          "path": ["codes"]
+        }
+      }
+    },
+    {
+      "name": "deleteURL",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/{{URL_ID}}",
+          "host": ["{{BASE_URL}}"],
+          "path": ["{{URL_ID}}"]
+        }
+      }
+    }
+  ]
+}
+

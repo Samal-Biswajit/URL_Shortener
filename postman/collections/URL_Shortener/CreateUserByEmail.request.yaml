@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{BASE_URL}}/user/signup"
+method: POST
+headers:
+  session-id: "{{SESSION-ID}}"
+body:
+  type: json
+  content: "{\r
+
+    \    \"firstname\": \"{{USER_FIRST_NAME}}\",\r
+
+    \    \"lastname\": \"{{USER_LAST_NAME}}\",\r
+
+    \    \"email\": \"{{USER_EMAIL}}\",\r
+
+    \    \"password\": \"{{USER_PASSWORD}}\"\r
+
+    }"
+auth:
+  type: noauth
+order: 1000
