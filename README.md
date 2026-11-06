@@ -22,7 +22,7 @@
 | **Backend** | Node.js, Express.js |
 | **Database** | PostgreSQL |
 | **ORM** | Drizzle ORM |
-| **Authentication** | JWT, bcrypt |
+| **Authentication** | JWT, HMAC-SHA256 (crypto) |
 | **Validation** | Zod |
 | **Containerization** | Docker, Docker Compose |
 | **Unique ID Gen** | nanoid |
@@ -144,8 +144,8 @@ Here are the available endpoints. All protected routes require a `Bearer <token>
 | --- | --- | --- | --- |
 | POST | `/shorten` | Create a short URL | ✅ |
 | GET | `/:shortCode` | Redirect to original URL | ❌ |
-| GET | `/urls` | Get all URLs for logged-in user | ✅ |
-| DELETE | `/urls/:id` | Delete a specific short URL | ✅ |
+| GET | `/codes` | Get all URLs for logged-in user | ✅ |
+| DELETE | `/:id` | Delete a specific short URL | ✅ |
 
 ---
 

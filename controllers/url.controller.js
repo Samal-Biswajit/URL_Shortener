@@ -36,7 +36,11 @@ export async function addShortenURL(req, res) {
 export async function deleteURL(req, res) {
   const id = req.params.id;
   const userId = req.user.id;
-  await deleteURLByID(id, userId);
+  const result = await deleteURLByID(id, userId);
+
+  if (!result) {
+    return res.status(404).json({ error: "URL not found" });
+  }
 
   return res.status(200).json({ deleted: true });
 }
@@ -47,7 +51,7 @@ export async function getTargetURL(req, res) {
   const result = await getTargetURLByShortCode(code);
 
   if (!result) {
-    return res.json({ error: "Invalid URL" });
+    return res.status(404).json({ error: "Invalid URL" });
   }
 
   return res.redirect(result.targetURL);

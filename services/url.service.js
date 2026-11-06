@@ -40,7 +40,10 @@ export async function getAllShortenURLs(userId) {
 }
 
 export async function deleteURLByID(id, userId) {
-  await db
+  const [result] = await db
     .delete(urlsTable)
-    .where(and(eq(urlsTable.id, id), eq(urlsTable.userId, userId)));
+    .where(and(eq(urlsTable.id, id), eq(urlsTable.userId, userId)))
+    .returning({ id: urlsTable.id });
+
+  return result;
 }

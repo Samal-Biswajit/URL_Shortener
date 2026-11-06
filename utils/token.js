@@ -10,7 +10,7 @@ export async function createUserToken(payload) {
   if (validationResult.error) throw new Error(validationResult.error.message);
 
   const payloadValidateData = validationResult.data;
-  const token = jwt.sign(payloadValidateData, JWT_SECRET);
+  const token = jwt.sign(payloadValidateData, JWT_SECRET, { expiresIn: "7d" });
   return token;
 }
 
