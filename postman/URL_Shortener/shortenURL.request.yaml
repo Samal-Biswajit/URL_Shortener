@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{BASE_URL}}/shorten"
+method: POST
+body:
+  type: json
+  content: "{\r\n    \"url\" : \"https://www.facebook.com\",\r\n    \"code\": \"facebook\"\r\n}"
+auth:
+  type: bearer
+  credentials:
+    token: "{{TOKEN}}"
+order: 3000

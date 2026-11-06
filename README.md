@@ -149,15 +149,20 @@ Here are the available endpoints. All protected routes require a `Bearer <token>
 
 ---
 
-## 🧪 Testing with Postman
+## 🧪 Testing with Postman (Local Mode)
 
-1. Open Postman.
-2. Go to `File > Import`.
-3. Select the files inside the `postman/` directory:
-   - `URL_Shortener.postman_collection.json`
-   - `URL_Shortener.postman_environment.json`
-4. Make sure to select the imported environment in the top right corner of Postman.
-5. Create a user, login, and set your bearer token to start testing the protected routes!
+1. Open **Postman**.
+2. Switch to **Local Mode** (or open the repository/workspace directory).
+3. Select the `postman` folder. Postman will automatically discover:
+   - Collection: **URL_Shortener**
+   - Environment: **URL_Shortener** (`URL_Shortener.environment.yaml`)
+4. In the top-right environment dropdown, select **URL_Shortener**.
+5. Test the requests in order:
+   - `CreateUserByEmail` → Registers a test user
+   - `LoginUser` → Authenticates and **automatically saves the JWT token** to the environment!
+   - `shortenURL` → Creates a shortened link and **automatically saves its ID**!
+   - `getAllURLs` → Fetches your links
+   - `deleteURL` → Deletes the shortened link using the saved ID
 
 ---
 

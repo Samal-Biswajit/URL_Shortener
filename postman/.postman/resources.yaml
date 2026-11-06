@@ -1,0 +1,9 @@
+# Use this workspace to collaborate
+workspace:
+  id: a14e2897-606d-4839-8ed5-f7efb6b7e344
+
+localResources:
+  collections:
+    - ../URL_Shortener
+  environments:
+    - ../URL_Shortener.environment.yaml
