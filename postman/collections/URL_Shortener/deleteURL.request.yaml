@@ -1,8 +1,0 @@
-$kind: http-request
-url: "{{BASE_URL}}/{{URL_ID}}"
-method: DELETE
-auth:
-  type: bearer
-  credentials:
-    token: "{{TOKEN}}"
-order: 5000
